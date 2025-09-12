@@ -1,520 +1,1145 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-  <!-- Primary Meta Tags -->
-  <!-- TODO: Replace with your paper title and author names -->
-  <meta name="title" content="PAPER_TITLE - AUTHOR_NAMES">
-  <!-- TODO: Write a compelling 150-160 character description of your research -->
-  <meta name="description" content="BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS">
-  <!-- TODO: Add 5-10 relevant keywords for your research area -->
-  <meta name="keywords" content="KEYWORD1, KEYWORD2, KEYWORD3, machine learning, computer vision, AI">
-  <!-- TODO: List all authors -->
-  <meta name="author" content="FIRST_AUTHOR_NAME, SECOND_AUTHOR_NAME">
-  <meta name="robots" content="index, follow">
-  <meta name="language" content="English">
-  
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="article">
-  <!-- TODO: Replace with your institution or lab name -->
-  <meta property="og:site_name" content="INSTITUTION_OR_LAB_NAME">
-  <!-- TODO: Same as paper title above -->
-  <meta property="og:title" content="PAPER_TITLE">
-  <!-- TODO: Same as description above -->
-  <meta property="og:description" content="BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS">
-  <!-- TODO: Replace with your actual website URL -->
-  <meta property="og:url" content="https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE">
-  <!-- TODO: Create a 1200x630px preview image and update path -->
-  <meta property="og:image" content="https://YOUR_DOMAIN.com/static/images/social_preview.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="PAPER_TITLE - Research Preview">
-  <meta property="article:published_time" content="2024-01-01T00:00:00.000Z">
-  <meta property="article:author" content="FIRST_AUTHOR_NAME">
-  <meta property="article:section" content="Research">
-  <meta property="article:tag" content="KEYWORD1">
-  <meta property="article:tag" content="KEYWORD2">
+  <title>Self Forcing</title>
+  <script>
+    window.dataLayer = window.dataLayer || [];
 
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image">
-  <!-- TODO: Replace with your lab/institution Twitter handle -->
-  <meta name="twitter:site" content="@YOUR_TWITTER_HANDLE">
-  <!-- TODO: Replace with first author's Twitter handle -->
-  <meta name="twitter:creator" content="@AUTHOR_TWITTER_HANDLE">
-  <!-- TODO: Same as paper title above -->
-  <meta name="twitter:title" content="PAPER_TITLE">
-  <!-- TODO: Same as description above -->
-  <meta name="twitter:description" content="BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS">
-  <!-- TODO: Same as social preview image above -->
-  <meta name="twitter:image" content="https://YOUR_DOMAIN.com/static/images/social_preview.png">
-  <meta name="twitter:image:alt" content="PAPER_TITLE - Research Preview">
+    function gtag() {
+      dataLayer.push(arguments);
+    }
 
-  <!-- Academic/Research Specific -->
-  <meta name="citation_title" content="PAPER_TITLE">
-  <meta name="citation_author" content="FIRST_AUTHOR_LAST, FIRST_AUTHOR_FIRST">
-  <meta name="citation_author" content="SECOND_AUTHOR_LAST, SECOND_AUTHOR_FIRST">
-  <meta name="citation_publication_date" content="2024">
-  <meta name="citation_conference_title" content="CONFERENCE_NAME">
-  <meta name="citation_pdf_url" content="https://YOUR_DOMAIN.com/static/pdfs/paper.pdf">
-  
-  <!-- Additional SEO -->
-  <meta name="theme-color" content="#2563eb">
-  <meta name="msapplication-TileColor" content="#2563eb">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  
-  <!-- Preconnect for performance -->
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+
+    document.addEventListener('DOMContentLoaded', function () {
+      const toggleButton = document.getElementById('toggleButton');
+      const tocContent = document.getElementById('tocContent');
+      const tocHeader = document.querySelector('.toc-header');
+
+      function toggleMenu() {
+        tocContent.classList.toggle('collapsed');
+        toggleButton.textContent = tocContent.classList.contains('collapsed') ? '▶' : '▼';
+      }
+
+      tocHeader.addEventListener('click', toggleMenu);
+    });
+
+  </script>
+
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://ajax.googleapis.com">
-  <link rel="preconnect" href="https://documentcloud.adobe.com">
-  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans&family=Noto+Sans&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="preload" href="./static/css/index.css" as="style">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script defer src="./static/js/bulma-carousel.min.js"></script>
+  <script defer src="./static/js/bulma-slider.min.js"></script>
+  <script defer src="./static/js/index.js"></script>
+
+  <style>
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      width: 100%;
+      margin: 0 auto;
+      padding: 1rem;
+    }
+
+    .video-item {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+    }
+
+    .video-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .video-item video {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .prompt-text {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 1rem;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      color: #fff;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6), transparent);
+      opacity: 0;
+      transform: translateY(100%);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .video-item:hover .prompt-text {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 1024px) {
+      .video-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .video-grid {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+        padding: 0.5rem;
+      }
+    }
+  </style>
 
 
-  <!-- TODO: Replace with your paper title and authors -->
-  <title>PAPER_TITLE - AUTHOR_NAMES | Academic Research</title>
-  
-  <!-- Favicon and App Icons -->
-  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
-  <link rel="apple-touch-icon" href="static/images/favicon.ico">
-  
-  <!-- Critical CSS - Load synchronously -->
-  <link rel="stylesheet" href="static/css/bulma.min.css">
-  <link rel="stylesheet" href="static/css/index.css">
-  
-  <!-- Non-critical CSS - Load asynchronously -->
-  <link rel="preload" href="static/css/bulma-carousel.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="preload" href="static/css/bulma-slider.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="preload" href="static/css/fontawesome.all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="preload" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  
-  <!-- Fallback for browsers that don't support preload -->
-  <noscript>
-    <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
-    <link rel="stylesheet" href="static/css/bulma-slider.min.css">
-    <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  </noscript>
-  
-  <!-- Fonts - Optimized loading -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  
-  <!-- Defer non-critical JavaScript -->
-  <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script defer src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
-  <script defer src="static/js/fontawesome.all.min.js"></script>
-  <script defer src="static/js/bulma-carousel.min.js"></script>
-  <script defer src="static/js/bulma-slider.min.js"></script>
-  <script defer src="static/js/index.js"></script>
-  
-  <!-- Structured Data for Academic Papers -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "ScholarlyArticle",
-    "headline": "PAPER_TITLE",
-    "description": "BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS",
-    "author": [
-      {
-        "@type": "Person",
-        "name": "FIRST_AUTHOR_NAME",
-        "affiliation": {
-          "@type": "Organization",
-          "name": "INSTITUTION_NAME"
-        }
-      },
-      {
-        "@type": "Person",
-        "name": "SECOND_AUTHOR_NAME",
-        "affiliation": {
-          "@type": "Organization",
-          "name": "INSTITUTION_NAME"
-        }
-      }
-    ],
-    "datePublished": "2024-01-01",
-    "publisher": {
-      "@type": "Organization",
-      "name": "CONFERENCE_OR_JOURNAL_NAME"
-    },
-    "url": "https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE",
-    "image": "https://YOUR_DOMAIN.com/static/images/social_preview.png",
-    "keywords": ["KEYWORD1", "KEYWORD2", "KEYWORD3", "machine learning", "computer vision"],
-    "abstract": "FULL_ABSTRACT_TEXT_HERE",
-    "citation": "BIBTEX_CITATION_HERE",
-    "isAccessibleForFree": true,
-    "license": "https://creativecommons.org/licenses/by/4.0/",
-    "mainEntity": {
-      "@type": "WebPage",
-      "@id": "https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE"
-    },
-    "about": [
-      {
-        "@type": "Thing",
-        "name": "RESEARCH_AREA_1"
-      },
-      {
-        "@type": "Thing", 
-        "name": "RESEARCH_AREA_2"
-      }
-    ]
-  }
-  </script>
-  
-  <!-- Website/Organization Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "INSTITUTION_OR_LAB_NAME",
-    "url": "https://YOUR_INSTITUTION_WEBSITE.com",
-    "logo": "https://YOUR_DOMAIN.com/static/images/favicon.ico",
-    "sameAs": [
-      "https://twitter.com/YOUR_TWITTER_HANDLE",
-      "https://github.com/YOUR_GITHUB_USERNAME"
-    ]
-  }
-  </script>
 </head>
+
 <body>
 
 
-  <!-- Scroll to Top Button -->
-  <button class="scroll-to-top" onclick="scrollToTop()" title="Scroll to top" aria-label="Scroll to top">
-    <i class="fas fa-chevron-up"></i>
-  </button>
+<!--   <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <br>
 
-  <!-- More Works Dropdown -->
-  <div class="more-works-container">
-    <button class="more-works-btn" onclick="toggleMoreWorks()" title="View More Works from Our Lab">
-      <i class="fas fa-flask"></i>
-      More Works
-      <i class="fas fa-chevron-down dropdown-arrow"></i>
-    </button>
-    <div class="more-works-dropdown" id="moreWorksDropdown">
-      <div class="dropdown-header">
-        <h4>More Works from Our Lab</h4>
-        <button class="close-btn" onclick="toggleMoreWorks()">
-          <i class="fas fa-times"></i>
-        </button>
-      </div>
-      <div class="works-list">
-        <!-- TODO: Replace with your lab's related works -->
-        <a href="https://arxiv.org/abs/PAPER_ID_1" class="work-item" target="_blank">
-          <div class="work-info">
-            <!-- TODO: Replace with actual paper title -->
-            <h5>Paper Title 1</h5>
-            <!-- TODO: Replace with brief description -->
-            <p>Brief description of the work and its main contribution.</p>
-            <!-- TODO: Replace with venue and year -->
-            <span class="work-venue">Conference/Journal 2024</span>
+            <h1 class="title is-1 publication-title">Self Forcing: Bridging Training and Inference in Autoregressive Video Diffusion <br> </h1>
           </div>
-          <i class="fas fa-external-link-alt"></i>
-        </a>
-        <!-- TODO: Add more related works or remove extra items -->
-        <a href="https://arxiv.org/abs/PAPER_ID_2" class="work-item" target="_blank">
-          <div class="work-info">
-            <h5>Paper Title 2</h5>
-            <p>Brief description of the work and its main contribution.</p>
-            <span class="work-venue">Conference/Journal 2023</span>
-          </div>
-          <i class="fas fa-external-link-alt"></i>
-        </a>
-        <a href="https://arxiv.org/abs/PAPER_ID_3" class="work-item" target="_blank">
-          <div class="work-info">
-            <h5>Paper Title 3</h5>
-            <p>Brief description of the work and its main contribution.</p>
-            <span class="work-venue">Conference/Journal 2023</span>
-          </div>
-          <i class="fas fa-external-link-alt"></i>
-        </a>
+        </div>
       </div>
     </div>
-  </div>
+  </section> -->
 
-  <main id="main-content">
   <section class="hero">
     <div class="hero-body">
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column has-text-centered">
-            <!-- TODO: Replace with your paper title -->
-            <h1 class="title is-1 publication-title">Academic Project Page</h1>
+            <br>
+            <h1 class="title is-1 publication-title" style="margin-bottom:0rem">DIAGONAL DISTILLATION</h1>
+            <h2 class="title is-3 publication-title">FOR STREAMING AUTORE-GRESSIVE VIDEO GENERATION</h2>
             <div class="is-size-5 publication-authors">
-              <!-- TODO: Replace with your paper authors and their personal links -->
               <span class="author-block">
-                <a href="FIRST AUTHOR PERSONAL LINK" target="_blank">First Author</a><sup>*</sup>,</span>
-                <span class="author-block">
-                  <a href="SECOND AUTHOR PERSONAL LINK" target="_blank">Second Author</a><sup>*</sup>,</span>
-                  <span class="author-block">
-                    <a href="THIRD AUTHOR PERSONAL LINK" target="_blank">Third Author</a>
-                  </span>
-                  </div>
+                <a href="https://www.xunhuang.me/">Xun Huang</a><sup>1</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://zhengqili.github.io/">Zhengqi Li</a><sup>1</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://guandehe.github.io/">Guande He</a><sup>2</sup>,
+              </span>
+              <!-- <br> -->
+              <span class="author-block">
+                <a href="https://mingyuanzhou.github.io/">Mingyuan Zhou</a><sup>2</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://research.adobe.com/person/eli-shechtman/">Eli Shechtman</a><sup>1</sup>,
+              </span>
+            </div>
 
-                  <div class="is-size-5 publication-authors">
-                    <!-- TODO: Replace with your institution and conference/journal info -->
-                    <span class="author-block">Institution Name<br>Conference name and year</span>
-                    <!-- TODO: Remove this line if no equal contribution -->
-                    <span class="eql-cntrb"><small><br><sup>*</sup>Indicates Equal Contribution</small></span>
-                  </div>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><sup>1</sup>Adobe Research,</span>
+              <span class="author-block"><sup>2</sup>UT Austin,</span>
+              <!-- <span class="author-block"><sup>*</sup>Equal Contribution</span> -->
+            </div>
 
-                  <div class="column has-text-centered">
-                    <div class="publication-links">
-                         <!-- TODO: Update with your arXiv paper ID -->
-                      <span class="link-block">
-                        <a href="https://arxiv.org/pdf/<ARXIV PAPER ID>.pdf" target="_blank"
-                        class="external-link button is-normal is-rounded is-dark">
-                        <span class="icon">
-                          <i class="fas fa-file-pdf"></i>
-                        </span>
-                        <span>Paper</span>
-                      </a>
-                    </span>
+            <!-- <div class="is-size-5 column has-text-centered"> -->
+              <!-- <strong>CVPR 2025</strong> -->
+            <!-- </div> -->
 
-                    <!-- TODO: Add your supplementary material PDF or remove this section -->
-                    <span class="link-block">
-                      <a href="static/pdfs/supplementary_material.pdf" target="_blank"
-                      class="external-link button is-normal is-rounded is-dark">
-                      <span class="icon">
-                        <i class="fas fa-file-pdf"></i>
-                      </span>
-                      <span>Supplementary</span>
-                    </a>
-                  </span>
-
-                  <!-- TODO: Replace with your GitHub repository URL -->
-                  <span class="link-block">
-                    <a href="https://github.com/YOUR REPO HERE" target="_blank"
-                    class="external-link button is-normal is-rounded is-dark">
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <span class="link-block">
+                  <a href="https://arxiv.org/abs/2506.08009" class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
-                      <i class="fab fa-github"></i>
+                      <i class="fas fa-file-pdf"></i>
                     </span>
-                    <span>Code</span>
+                    <span>Paper</span>
                   </a>
                 </span>
-
-                <!-- TODO: Update with your arXiv paper ID -->
                 <span class="link-block">
-                  <a href="https://arxiv.org/abs/<ARXIV PAPER ID>" target="_blank"
-                  class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                    <i class="ai ai-arxiv"></i>
-                  </span>
-                  <span>arXiv</span>
-                </a>
-              </span>
+                  <a href="https://github.com/guandeh17/Self-Forcing"
+                     class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                        <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                    </a>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-body" style="padding-bottom: 0rem;">
+        <div class="container is-max-desktop">
+          <div class="columns is-centered">
+            <div class="column has-text-centered">
+              <div class="content has-text-justified">
+                <video controls preload="metadata" autoplay muted loop playsinline style="width: 100%; height: auto; border-radius: 8px;">
+                  <source src="static/videos/demo.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-body" style="padding-bottom: 0rem;">
+        <div class="container is-max-desktop">
+          <div class="columns is-centered">
+            <div class="column has-text-centered">
+              <h2 class="title is-4" style="color: #3273dc; margin-bottom: 1rem;">TL;DR</h2>
+              <div class="content has-text-justified" style="font-size: 1.25rem; line-height: 1.6; background-color: #f8f9fa; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #3273dc;">
+                <p>
+                  <strong>Self Forcing</strong> trains autoregressive video diffusion models by <strong>simulating the inference process during training</strong>, performing autoregressive rollout with KV caching.
+                    It resolves the train-test distribution mismatch and enables <strong>real-time, streaming video generation on a single RTX 4090</strong>  while matching the quality of state-of-the-art diffusion models.
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
-
-
-<!-- Teaser video-->
-<section class="hero teaser">
-  <div class="container is-max-desktop">
-    <div class="hero-body">
-      <!-- TODO: Replace with your teaser video -->
-      <video poster="" id="tree" autoplay controls muted loop height="100%" preload="metadata">
-        <!-- TODO: Add your video file path here -->
-        <source src="static/videos/banner_video.mp4" type="video/mp4">
-      </video>
-      <!-- TODO: Replace with your video description -->
-      <h2 class="subtitle has-text-centered">
-        Aliquam vitae elit ullamcorper tellus egestas pellentesque. Ut lacus tellus, maximus vel lectus at, placerat pretium mi. Maecenas dignissim tincidunt vestibulum. Sed consequat hendrerit nisl ut maximus. 
-      </h2>
+  </section>
+  <div class="container " id="overview">
+    <!-- <h2 id="obj-comparison" class="title is-3 has-text-centered">Training paradigms for AR video diffusion models</h2> -->
+    <div class="content has-text-justified" style="font-size: 1.5rem; line-height: 2.0;">
+      <figure class="image is-centered">
+        <img src="static/teaser.jpg">
     </div>
   </div>
-</section>
-<!-- End teaser video -->
 
-<!-- Paper abstract -->
-<section class="section hero is-light">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
-        <div class="content has-text-justified">
-          <!-- TODO: Replace with your paper abstract -->
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ullamcorper tellus sed ante aliquam tempus. Etiam porttitor urna feugiat nibh elementum, et tempor dolor mattis. Donec accumsan enim augue, a vulputate nisi sodales sit amet. Proin bibendum ex eget mauris cursus euismod nec et nibh. Maecenas ac gravida ante, nec cursus dui. Vivamus purus nibh, placerat ac purus eget, sagittis vestibulum metus. Sed vestibulum bibendum lectus gravida commodo. Pellentesque auctor leo vitae sagittis suscipit.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- End paper abstract -->
-
-
-<!-- Image carousel -->
-<section class="hero is-small">
-  <div class="hero-body">
-    <div class="container">
-      <div id="results-carousel" class="carousel results-carousel">
-       <div class="item">
-        <!-- TODO: Replace with your research result images -->
-        <img src="static/images/carousel1.jpg" alt="First research result visualization" loading="lazy"/>
-        <!-- TODO: Replace with description of this result -->
-        <h2 class="subtitle has-text-centered">
-          First image description.
-        </h2>
-      </div>
-      <div class="item">
-        <!-- Your image here -->
-        <img src="static/images/carousel2.jpg" alt="Second research result visualization" loading="lazy"/>
-        <h2 class="subtitle has-text-centered">
-          Second image description.
-        </h2>
-      </div>
-      <div class="item">
-        <!-- Your image here -->
-        <img src="static/images/carousel3.jpg" alt="Third research result visualization" loading="lazy"/>
-        <h2 class="subtitle has-text-centered">
-         Third image description.
-       </h2>
-     </div>
-     <div class="item">
-      <!-- Your image here -->
-      <img src="static/images/carousel4.jpg" alt="Fourth research result visualization" loading="lazy"/>
-      <h2 class="subtitle has-text-centered">
-        Fourth image description.
-      </h2>
-    </div>
-  </div>
-</div>
-</div>
-</section>
-<!-- End image carousel -->
-
-
-
-
-<!-- Youtube video -->
-<section class="hero is-small is-light">
-  <div class="hero-body">
-    <div class="container">
-      <!-- Paper video. -->
-      <h2 class="title is-3">Video Presentation</h2>
+  <!-- <section class="section">
+    <div class="container is-max-desktop">
       <div class="columns is-centered has-text-centered">
         <div class="column is-four-fifths">
-          
-          <div class="publication-video">
-            <!-- TODO: Replace with your YouTube video ID -->
-            <iframe src="https://www.youtube.com/embed/JkaxUblCGz0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              We introduce Self Forcing, a novel training paradigm for autoregressive video diffusion models. It addresses the longstanding issue of exposure bias, where models trained on ground-truth context must generate sequences conditioned on their own imperfect outputs during inference. Unlike prior methods that denoise future frames based on ground-truth context frames, Self Forcing conditions each frame's generation on previously self-generated outputs by performing autoregressive rollout with key-value(KV) caching during training. This strategy enables supervision through a holistic loss at the video level that directly evaluates the quality of the entire generated sequence, rather than relying solely on traditional frame-wise objectives. To ensure training efficiency, we employ a few-step diffusion model along with a stochastic gradient truncation strategy, effectively balancing computational cost and performance. We further introduce a rolling KV cache mechanism that enables efficient autoregressive video extrapolation. Extensive experiments demonstrate that our approach achieves real-time streaming video generation with sub-second latency on a single GPU, while matching or even surpassing the generation quality of significantly slower and non-causal diffusion models.
+            </p>
           </div>
         </div>
       </div>
+      </div><br>
+      <!--/ Abstract. -->
+  <!-- </section> --> -->
+
+  <br>
+
+
+  <hr>
+  <div class="container " id="text2short">
+    <h2 id="obj-comparison" class="title is-3 has-text-centered">Real-Time Video Generation</h2>
+    <div class="content has-text-justified" style="font-size: 1.5rem; line-height: 1.8;">
+      <p>
+        Our model generates high-quality 480P videos with an initial latency of <strong>~0.8 seconds</strong>, after which
+        frames are generated in a streaming fashion at <strong>~16 FPS</strong> on a single H100 GPU and ~10 FPS on a single 4090 with some optimizations.
+        <br>
+        Below, we show 5-second videos (top) and extrapolated 10-second videos (bottom) generated by our model. <a href="videos.html">[More Examples]</a>
+      </p>
     </div>
   </div>
-</section>
-<!-- End youtube video -->
+
+  <br>
 
 
-<!-- Video carousel -->
-<section class="hero is-small">
-  <div class="hero-body">
-    <div class="container">
-      <h2 class="title is-3">Another Carousel</h2>
-      <div id="results-carousel" class="carousel results-carousel">
-        <div class="item item-video1">
-          <!-- TODO: Add poster image for better preview -->
-          <video poster="" id="video1" controls muted loop height="100%" preload="metadata">
-            <!-- Your video file here -->
-            <source src="static/videos/carousel1.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-video2">
-          <!-- TODO: Add poster image for better preview -->
-          <video poster="" id="video2" controls muted loop height="100%" preload="metadata">
-            <!-- Your video file here -->
-            <source src="static/videos/carousel2.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-video3">
-          <!-- TODO: Add poster image for better preview -->
-          <video poster="" id="video3" controls muted loop height="100%" preload="metadata">
-            <!-- Your video file here -->
-            <source src="static/videos/carousel3.mp4" type="video/mp4">
-          </video>
-        </div>
-      </div>
+  <div class="video-grid">
+
+    <div class="video-item">
+      <video controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="case/long_video_output_A_CGI_animation_of_Yoda_the_iconic_green_Jedi_mas-_20250828_034336.mp4"
+          type="video/mp4">
+      </video>
+      <p class="prompt-text">A CGI animation of Yoda, the iconic green Jedi master, playing a guitar on a stage. Yoda is dressed in his traditional Jedi robes and has a playful, focused expression as he strums the guitar strings. The stage is dimly lit with spotlights shining down on him, creating dramatic shadows. The background features a live audience with various alien species cheering him on. Yoda is sitting on a stool, leaning slightly forward, and his fingers move nimbly over the guitar. Medium close-up shot focusing on Yoda's face and hands interacting with the guitar.</p>
+    </div>
+
+    <div class="video-item">
+      <video controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="case/long_video_output_A_cheerful_fuzzy_panda_playing_a_guitar_near_a_wa-_20250904_163919.mp4"
+          type="video/mp4">
+      </video>
+      <p class="prompt-text">A cheerful, fuzzy panda playing a guitar near a warm campfire. The panda has soft, black patches against a white fluffy coat, with large, expressive eyes filled with joy. It is sitting comfortably, strumming the strings with its front paws. Flames from the campfire flicker and dance, casting gentle shadows on the ground. In the background, a majestic snow-capped mountain rises, its peaks dusted with snow under a clear blue sky. The scene is captured in a medium shot, emphasizing the cozy, serene atmosphere of the winter landscape.</p>
+    </div>
+
+    <div class="video-item">
+      <video controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="case/long_video_output_A_cheerful_and_energetic_Corgi_playing_happily_in-_20250904_161618.mp4"
+          type="video/mp4">
+      </video>
+      <p class="prompt-text">A cheerful and energetic Corgi playing happily in a sunlit park during the golden hour of sunset. The Corgi is running around with a playful wagging tail and joyful barks, jumping over small obstacles and chasing after a ball. The park is filled with lush green grass and scattered trees casting long shadows. In the background, the sky is painted with warm hues of orange and pink, reflecting a serene and cozy atmosphere. The scene includes an intense shaking effect that adds excitement and vibrancy to the video. Medium close-up shot focusing on the Corgi's playful antics.</p>
+    </div>
+
+    <div class="video-item">
+      <video controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="case/long_video_output_A_high-speed_train_rushes_down_the_railway_tracks-_20250904_151328.mp4"
+          type="video/mp4">
+      </video>
+      <p class="prompt-text">A high-speed train rushes down the railway tracks, its sleek body gleaming under the bright sunlight. The train moves with great momentum, leaving a trail of steam behind as it passes through the landscape. The camera follows the train from a distance, capturing the powerful motion and speed. Surrounding the tracks are lush green fields and tall trees, creating a picturesque backdrop. The video should emphasize the train's velocity and the dynamic motion of the scenery passing by. Wide shot, showing the entirety of the train and the expansive environment surrounding it.</p>
+    </div>
+
+    <div class="video-item">
+      <video controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="case/long_video_output_A_fluffy_white_sheep_grazing_in_a_lush_green_meado-_20250904_152501.mp4"
+          type="video/mp4">
+      </video>
+      <p class="prompt-text">A fluffy white sheep grazing in a lush green meadow under a clear blue sky. The sheep has soft wool, large brown eyes, and a gentle expression. It is nibbling on grass, moving its head side to side as it eats. In the background, there are rolling hills covered with green grass and wildflowers in full bloom. The scene is peaceful and serene, captured in a medium close-up shot focusing on the sheep's calm and content demeanor.</p>
+    </div>
+
+    <div class="video-item">
+      <video controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="case/long_video_output_A_cute_fluffy_panda_sitting_at_a_small_table_in_a-_20250904_163847.mp4"
+          type="video/mp4">
+      </video>
+      <p class="prompt-text">A cute, fluffy panda sitting at a small table in a traditional Chinese restaurant, eating Chinese cuisine. The panda has soft black patches around its eyes and ears, contrasting with its white fur. It sits comfortably in a relaxed posture, holding a pair of chopsticks with its front paws, delicately picking up pieces of dumplings from a steaming plate. The restaurant is decorated with red lanterns and bamboo accents, creating a cozy and inviting atmosphere. In the background, other diners can be seen enjoying their meals. Medium close-up shot focusing on the panda's face and hands as it enjoys its meal.</p>
+    </div>
+
+    <div class="video-item">
+      <video controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="case/long_video_output_A_sleek_black_motorcycle_cruising_along_a_scenic_c-_20250904_151116.mp4"
+          type="video/mp4">
+      </video>
+      <p class="prompt-text">A sleek black motorcycle cruising along a scenic coastal highway during sunset. The motorcycle has a polished chrome finish and tinted windows on the helmet. The rider, wearing a black leather jacket and jeans, has their hands firmly on the handlebars and is leaning slightly forward, maintaining a steady posture. Waves crash against the rocky shoreline on one side of the highway, while lush green hills roll into the distance on the other. The sky is painted with vibrant hues of orange and pink, casting a warm glow over the entire scene. The camera follows the motorcycle from behind, capturing the wind-swept road and the dramatic coastal landscape in a wide shot.</p>
+    </div>
+
+    <div class="video-item">
+      <video controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="case/long_video_output_A_sleek_modern_boat_accelerating_across_the_water-_20250904_151518.mp4"
+          type="video/mp4">
+      </video>
+      <p class="prompt-text">A sleek, modern boat accelerating across the water to gain speed. The boat's hull slices through the waves, creating a trail of white foam behind it. The sun glints off the water, casting shimmering reflections. The boat's engine roars as it speeds up, and the spray from the bow sprays upwards. Focus on the dynamic motion of the boat as it accelerates, with a medium shot capturing the entirety of the boat and the surrounding water. No camera movement, just a static yet action-packed scene.</p>
+    </div>
+
+    <div class="video-item">
+      <video controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="case/long_video_output_A_sleek_modern_green_sports_car_driving_down_a_sc-_20250904_153747.mp4"
+          type="video/mp4">
+      </video>
+      <p class="prompt-text">A close-up shot of a sleek green hard-shell suitcase with a shiny metallic handle and sturdy wheels. The suitcase has a simple yet modern design, with subtle embossed lines running along its surface. In the background, there is a blurred airport terminal with people walking by, adding a sense of travel and adventure. The suitcase remains stationary, emphasizing its detailed texture and color.</p>
+    </div>
+
+    <div class="video-item">
+      <video controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="case/long_video_output_A_sleek_modern_sports_car_accelerating_rapidly_do-_20250904_151105.mp4"
+          type="video/mp4">
+      </video>
+      <p class="prompt-text">A sleek, modern sports car accelerating rapidly down a straight, empty road, gaining speed with each passing second. The car's engine roars as it speeds up, tires leaving occasional smoke trails on the asphalt. The exterior of the car is a shiny metallic silver with minimalistic design elements. The background showcases a scenic countryside with rolling hills and a clear blue sky. The camera follows the car from a slight distance, capturing the intense acceleration and speed from a dynamic tracking shot.</p>
+    </div>
+
+    <div class="video-item">
+      <video controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="case/long_video_output_A_slow-moving_car_driving_down_an_empty_street_dur-_20250904_163805.mp4"
+          type="video/mp4">
+      </video>
+      <p class="prompt-text">A slow-moving car driving down an empty street during a rainy evening. The car's headlights illuminate the wet pavement, creating reflections and puddles that ripple from passing vehicles and pedestrians. The street is desolate, with only distant streetlights casting a dim glow over the scene. The rain creates a soft mist, making the surroundings appear hazy and melancholic. The camera follows the car in a smooth tracking shot, capturing the droplets hitting the windshield and the wipers swiping across. The overall atmosphere is calm yet eerie, with a slight sense of isolation. Medium shot focusing on the car and its immediate surroundings.</p>
+    </div>
+
+    <div class="video-item">
+      <video controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="case/long_video_output_A_person_is_cycling_through_a_scenic_park_trail_T-_20250904_145102.mp4"
+          type="video/mp4">
+      </video>
+      <p class="prompt-text">A person is cycling through a scenic park trail. The rider is wearing a helmet, casual clothes, and sunglasses, pedaling steadily. They are mid-action, leaning slightly forward, with one hand on the handlebars and the other hanging loosely. The environment around them includes lush green trees, blooming flowers, and a winding dirt path. The sun is shining brightly, casting dappled shadows through the leaves. The scene captures a close-up of the rider from a side angle, focusing on their determined expression and the motion of the bicycle wheels.</p>
+    </div>
+
+
+  </div>
+  <!--
+  <div id="results-carousel" class="carousel results-carousel">
+    <div class="item">
+      <video id="cereal" controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="https://huggingface.co/datasets/tianweiy/causvid_website/resolve/main/videos/5s_t2v_decoded/video_0009.mp4"
+          type="video/mp4">
+      </video>
+      <p class="prompt-text">close up shot of a woman, police lights flashing in background, cinematic, low contrast
+      </p>
+    </div>
+
+    <div class="item">
+      <video id="cereal" controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="https://huggingface.co/datasets/tianweiy/causvid_website/resolve/main/videos/5s_t2v_decoded/video_0010.mp4"
+          type="video/mp4">
+      </video>
+      <p class="prompt-text">in a beautifully rendered papercraft world, a steamboat travels across a vast ocean
+        with wispy clouds in the sky. vast grassy hills lie in the distant background, and some sealife is visible
+        near the papercraft ocean's surface</p>
+    </div>
+
+    <div class="item">
+      <video id="cereal" controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="https://huggingface.co/datasets/tianweiy/causvid_website/resolve/main/videos/5s_t2v_decoded/video_0011.mp4"
+          type="video/mp4">
+      </video>
+      <p class="prompt-text">Macro shot of a man wearing an antique diving helmet with dark glass and a jetpack
+        walking on the veins of a leaf. Realistic style</p>
+    </div>
+
+    <div class="item">
+      <video id="cereal" controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="https://huggingface.co/datasets/tianweiy/causvid_website/resolve/main/videos/5s_t2v_decoded/video_0012.mp4"
+          type="video/mp4">
+      </video>
+      <p class="prompt-text">A Samoyed and a Golden Retriever dog are playfully romping through a futuristic neon
+        city at night. The neon lights emitted from the nearby buildings glistens off of their fur.</p>
+    </div>
+
+    <div class="item">
+      <video id="cereal" controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="https://huggingface.co/datasets/tianweiy/causvid_website/resolve/main/videos/5s_t2v_decoded/video_0013.mp4"
+          type="video/mp4">
+      </video>
+      <p class="prompt-text">Carefully pouring the milk into the cup, the milk flowed smoothly and the cup was
+        gradually filled with a milky white color</p>
+    </div>
+
+  </div> -->
+
+  <hr>
+  <div class="container " id="overview">
+    <h2 id="obj-comparison" class="title is-3 has-text-centered">(Surprisingly) Efficient Training, Even Without Full Parallelism</h2>
+    <div class="content has-text-justified" style="font-size: 1.5rem; line-height: 1.8;">
+      <p>
+        Although our reliance is on continuous rollout, its efficiency is astonishing and it achieves better quality under the same training budget. This is mainly because even if we process one frame at a time, we still maintain sufficient parallelism.
+      </p>
+    </div>
+
+    <div class="content has-text-justified" style="font-size: 1.5rem; line-height: 2.0;">
+      <figure class="image is-centered">
+        <img src="wechat_2025-09-09_214822_056.png">
+      </figure>
     </div>
   </div>
-</section>
-<!-- End video carousel -->
+  <br>
+
+  <hr>
+
+
+  <div class="container ">
+    <h2 id="obj-comparison" class="title is-3 has-text-centered">Faster, and Better </h2>
+    <div class="content has-text-justified" style="font-size: 1.5rem; line-height: 1.8;">
+      <p>
+        Our method has a faster speed than the previous one, while maintaining the same or even better video quality, without oversaturation artifacts and with more natural motion. Compared with Wan, SkyReels and MAGI, our method is 150-400× faster in latency while achieving equivalent or higher visual quality.
+      </p>
+    </div>
+  </div>
+
+  <br>
+  <div class="columns is-centered has-text-centered">
+    <div class="column">
+      <p><strong style="font-size: 24px;">Wan2.1-1.3B</strong></p>
+    </div>
+    <div class="column">
+      <p><strong style="font-size: 24px;">CausVid-1.3B</strong></p>
+    </div>
+    <div class="column">
+      <p><strong style="font-size: 24px;">Self forcing</strong></p>
+    </div>
+    <div class="column">
+      <p><strong style="font-size: 24px;">Ours-1.3B</strong></p>
+    </div>
+  </div>
+
+  <div id="results-carousel"
+    style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;">
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="case/Wan_woman.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="case/causvid_woman.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="bad_case/long_video_output_A_stylish_woman_strolls_down_a_bustling_Tokyo_stre-_20250907_083257.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="case/long_video_output_A_stylish_woman_strolls_down_a_bustling_Tokyo_stre-_20250907_083257.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+  </div>
+  <p class="prompt-text">A stylish woman walks down a Tokyo street filled with warm glowing neon and animated city signage. She wears a black leather jacket, a long red dress, and black boots, and carries a black purse. She wears sunglasses and red lipstick. She walks confidently and casually. The street is damp and reflective, creating a mirror effect of the colorful lights. Many pedestrians walk about.</p>
+  <!-- Row 2 -->
+
+  <div id="results-carousel"
+  style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;">
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="case/Wan_panda.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="case/0014 (1).mp4"
+          type="video/mp4">
+      </video>
+    </div>
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="bad_case/long_video_output_A_petri_dish_with_a_bamboo_forest_growing_within_i-_20250912_092337.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="case/long_video_output_A_petri_dish_with_a_bamboo_forest_growing_within_i-_20250909_145831.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+  </div>
+  <p class="prompt-text">A petri dish with a bamboo forest growing within it that has tiny red pandas running around.</p>
+  <div id="results-carousel"
+    style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;">
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="case/Wan_bear.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="case/causvid_bear.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="bad_case/long_video_output_An_adorable_happy_otter_confidently_stands_on_a_su-_20250912_092352.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="case/long_video_output_An_adorable_happy_otter_confidently_stands_on_a_su-_20250909_150907.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+  </div>
+  <p class="prompt-text">An adorable happy otter confidently stands on a surfboard wearing a yellow lifejacket, riding along turquoise tropical waters near lush tropical islands, 3D digital render art style.</p>
+  <br>
+  <hr>
+<!--   <div class="container ">
+    <h2 id="obj-comparison" class="title is-3 has-text-centered">Code/Uncrated Samples</h2>
+    <div class="content has-text-justified" style="font-size: 1.5rem; line-height: 1.8;">
+      <p>
+        In the local folder <a href="./uncurated_samples">uncurated_samples</a>, we attach uncurated samples from our method generated from the first 64 prompts in the MovieGenBench dataset with a fixed random seed (seed = 0). We provide source code for our method in the <a href="./code">code</a> folder.
+      </p>
+    </div>
+  </div> -->
+  <!-- <br> -->
+  <!-- <hr> -->
+  <div class="container ">
+    <h2 id="obj-comparison" class="title is-3 has-text-centered">ABLATION STUDY</h2>
+    <div class="content has-text-justified" style="font-size: 1.5rem; line-height: 1.8;">
+      <!-- <p>
+        We observe that chunk-wise Self Forcing with DMD, SiD, and GAN objectives yields qualitatively similar results, while frame-wise Self Forcing with the GAN loss performs slightly worse than with DMD or SiD, possibly due to the inherent challenges of training GANs.
+      </p> -->
+    </div>
+  </div>
+  <br>
+  <div class="columns is-centered has-text-centered">
+    <div class="column">
+      <p><strong style="font-size: 24px;">Without DiaDistill </strong></p>
+    </div>
+    <div class="column">
+      <p><strong style="font-size: 24px;">Without Diagonal Forcing </strong></p>
+    </div>
+    <div class="column">
+      <p><strong style="font-size: 24px;">Full Method (Ours)</strong></p>
+    </div>
+  </div>
+  <div id="results-carousel"
+    style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;">
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video id="cereal" controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="case/long_video_output_A_close-up_3D_animated_scene_of_a_short_fluffy_mo-_20250909_025510.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video id="cereal" controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="bad_case/long_video_output_Animated_scene_features_a_close-up_of_a_short_fluf-_20250912_085719.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video id="cereal" controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="case/long_video_output_A_close-up_3D_animated_scene_of_a_short_fluffy_mo-_20250909_153347.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+  </div>
+  <p class="prompt-text">Animated scene features a close-up of a short fluffy monster kneeling beside a melting red candle. </p>
+  <br>
+  <div class="columns is-centered has-text-centered">
+    <div class="column">
+      <p><strong style="font-size: 24px;">Without DiaDistill</strong></p>
+    </div>
+    <div class="column">
+      <p><strong style="font-size: 24px;">Without Diagonal Forcing</strong></p>
+    </div>
+    <div class="column">
+      <p><strong style="font-size: 24px;">Full Method (Ours)</strong></p>
+    </div>
+  </div>
+  <div id="results-carousel"
+    style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;">
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video id="cereal" controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="case/long_video_output_A_close_up_view_of_a_glass_sphere_that_has_a_zen_g-_20250909_155116.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video id="cereal" controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="bad_case/long_video_output_A_close_up_view_of_a_glass_sphere_that_has_a_zen_g-_20250912_090053.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video id="cereal" controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="case/long_video_output_A_close_up_view_of_a_glass_sphere_that_has_a_zen_g-_20250909_155126.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+  </div>
+  <p class="prompt-text">A close up view of a glass sphere that has a zen garden within it. There is a small dwarf in the sphere who is raking the zen garden and creating patterns in the sand.</p>
+  <br>  
+  <div class="columns is-centered has-text-centered">
+    <div class="column">
+      <p><strong style="font-size: 24px;">Without DiaDistill</strong></p>
+    </div>
+    <div class="column">
+      <p><strong style="font-size: 24px;">Without Diagonal Forcing</strong></p>
+    </div>
+    <div class="column">
+      <p><strong style="font-size: 24px;">Full Method (Ours)</strong></p>
+    </div>
+  </div>
+  <div id="results-carousel"
+    style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;">
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video id="cereal" controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="case/long_video_output_A_3D_animation_of_a_small_round_fluffy_creature-_20250910_072411.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video id="cereal" controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="bad_case/long_video_output_A_3D_animation_of_a_small_round_fluffy_creature-_20250912_085739.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video id="cereal" controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="case/long_video_output_A_3D_animation_of_a_small_round_fluffy_creature-_20250910_072435.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+  </div>
+  <p class="prompt-text">A 3D animation of a small, round, fluffy creature with big, expressive eyes exploring a vibrant, enchanted forest. The creature, a whimsical blend of a rabbit and a squirrel, has soft blue fur and a bushy, striped tail. It hops along a sparkling stream, its eyes wide with wonder. The forest is alive with magical elements: flowers that glow and change colors, trees with leaves in shades of purple and silver, and small floating lights that resemble fireflies. The creature stops to interact playfully with a group of tiny, fairy-like beings dancing around a mushroom ring. The creature looks up in awe at a large, glowing tree that seems to be the heart of the forest. The scene is rendered in a detailed, fantasy style, with a soft, ethereal lighting that enhances the enchantment. The camera follows the creature as it moves, capturing its playful interactions and the magical ambiance of the forest. A medium shot with a dynamic angle that highlights the creature's expressions and the enchanting environment.</p>
+  <br>  
+  <div class="columns is-centered has-text-centered">
+    <div class="column">
+      <p><strong style="font-size: 24px;">Without DiaDistill</strong></p>
+    </div>
+    <div class="column">
+      <p><strong style="font-size: 24px;">Without Diagonal Forcing</strong></p>
+    </div>
+    <div class="column">
+      <p><strong style="font-size: 24px;">Full Method (Ours)</strong></p>
+    </div>
+  </div>
+  <div id="results-carousel"
+    style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;">
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video id="cereal" controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="case/long_video_output_A_romantic_scene_in_a_nighttime_cityscape_where_a-_20250910_074438.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video id="cereal" controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="bad_case/long_video_output_A_romantic_scene_in_a_nighttime_cityscape_where_a-_20250912_085750.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video id="cereal" controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="case/long_video_output_A_romantic_scene_in_a_nighttime_cityscape_where_a-_20250910_074619.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+  </div>
+  <p class="prompt-text">A romantic scene in a nighttime cityscape where a man and a woman walk hand in hand under a starry sky, their faces illuminated by the soft glow of streetlights. They are dressed in casual yet elegant attire, the man in a dark blue suit and the woman in a light green dress. A wooden bucket is placed on the ground nearby, adding a touch of rustic charm. The couple’s expressions are filled with happiness and affection, as they gaze into each other’s eyes. The background features tall buildings with windows lit up, creating a warm and cozy atmosphere. The stars above twinkle brightly, enhancing the serene and intimate mood. The scene is captured in a medium shot with a slightly upward angle, capturing both the couple and the surrounding environment.</p>
+
+  <br>  
+  <div class="columns is-centered has-text-centered">
+    <div class="column">
+      <p><strong style="font-size: 24px;">Without DiaDistill</strong></p>
+    </div>
+    <div class="column">
+      <p><strong style="font-size: 24px;">Without Diagonal Forcing</strong></p>
+    </div>
+    <div class="column">
+      <p><strong style="font-size: 24px;">Full Method (Ours)</strong></p>
+    </div>
+  </div>
+  <div id="results-carousel"
+    style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;">
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video id="cereal" controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="case/long_video_output_A_cyberpunk-style_illustration_depicting_a_lone_ro-_20250910_111617.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video id="cereal" controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="bad_case/long_video_output_A_cyberpunk-style_illustration_depicting_a_lone_ro-_20250912_093757.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video id="cereal" controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="case/long_video_output_A_cyberpunk-style_illustration_depicting_a_lone_ro-_20250910_111757.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+  </div>
+  <p class="prompt-text">A romantic scene in a nighttime cityscape where a man and a woman walk hand in hand under a starry sky, their faces illuminated by the soft glow of streetlights. They are dressed in casual yet elegant attire, the man in a dark blue suit and the woman in a light green dress. A wooden bucket is placed on the ground nearby, adding a touch of rustic charm. The couple’s expressions are filled with happiness and affection, as they gaze into each other’s eyes. The background features tall buildings with windows lit up, creating a warm and cozy atmosphere. The stars above twinkle brightly, enhancing the serene and intimate mood. The scene is captured in a medium shot with a slightly upward angle, capturing both the couple and the surrounding environment.</p>
+  <!-- <br>
+  <hr>
+  <div class="container ">
+    <h2 id="obj-comparison" class="title is-3 has-text-centered">Rolling KV Cache Extrapolation: Comparing With and Without Local Attention Training</h2>
+    <div class="content has-text-justified" style="font-size: 1.5rem; line-height: 1.8;">
+      <p>
+        We show that naively performing rolling KV cache to generate long videos leads to flickering artifacts, which can be addressed by performing local attention training.
+      </p>
+    </div>
+  </div>
+  <br>
+  <div class="columns is-centered has-text-centered">
+    <div class="column">
+      <p><strong style="font-size: 24px;">Without Local Attention Training</strong></p>
+    </div>
+    <div class="column">
+      <p><strong style="font-size: 24px;">With Local Attention Training</strong></p>
+    </div>
+    <div class="column">
+      <p><strong style="font-size: 24px;">Without Local Attention Training</strong></p>
+    </div>
+    <div class="column">
+      <p><strong style="font-size: 24px;">With Local Attention Training</strong></p>
+    </div>
+  </div>
+  <div id="results-carousel"
+    style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;">
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video id="cereal" controls preload="metadata" ating environment.utoplay muted loop playsinline>
+        <source
+          src="static/videos/local-21-rolling_10s/0.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video id="cereal" controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="static/videos/local-18-rolling_10s/0.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video id="cereal" controls preload="metadata" autoplay muted loop playsinline>
+          <source
+            src="static/videos/local-21-rolling_10s/3.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video id="cereal" controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="static/videos/local-18-rolling_10s/3.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+  </div> -->
+
+  <br>
+  <hr>
+  <div class="container ">
+    <h2 id="obj-comparison" class="title is-3 has-text-centered">Long video genration(Self forcing)</h2>
+    <div class="content has-text-justified" style="font-size: 1.5rem; line-height: 1.8;">
+      <p>
+        The following is the result of our long video generation
+      </p>
+    </div>
+  </div>
+  <br>
+  <div id="results-carousel"
+    style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;">
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video id="cereal" controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="bad_case/long_video_output_A_bustling_market_scene_captured_in_the_style_of_a-_20250912_010304.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video id="cereal" controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="bad_case/long_video_output_A_close-up_shot_of_an_artist's_hand_fingers_movin-_20250912_000141.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video id="cereal" controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="bad_case/long_video_output_A_dramatic_nighttime_scene_in_the_style_of_a_class-_20250912_033513.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video id="cereal" controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="bad_case/long_video_output_A_first-person_perspective_photo_in_a_realistic_ou-_20250912_021128.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+  </div> 
+  
+  <br>
+  <hr>
+  <div class="container ">
+    <h2 id="obj-comparison" class="title is-3 has-text-centered">Long video genration(Causvid)</h2>
+    <div class="content has-text-justified" style="font-size: 1.5rem; line-height: 1.8;">
+      <p>
+        The following is the result of our long video generation
+      </p>
+    </div>
+  </div>
+  <br>
+  <div id="results-carousel"
+    style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;">
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video id="cereal" controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="bad_case/long_video_output_A_bustling_market_scene_captured_in_the_style_of_a-_20250912_010304.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video id="cereal" controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="bad_case/long_video_output_A_close-up_shot_of_an_artist's_hand_fingers_movin-_20250912_000141.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video id="cereal" controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="bad_case/long_video_output_A_dramatic_nighttime_scene_in_the_style_of_a_class-_20250912_033513.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video id="cereal" controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="bad_case/long_video_output_A_first-person_perspective_photo_in_a_realistic_ou-_20250912_021128.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+  </div> 
+
+  <br>
+  <hr>
+  <div class="container ">
+    <h2 id="obj-comparison" class="title is-3 has-text-centered">Long video genration(Ours)</h2>
+    <div class="content has-text-justified" style="font-size: 1.5rem; line-height: 1.8;">
+      <p>
+        The following is the result of our long video generation
+      </p>
+    </div>
+  </div>
+  <br>
+  <div id="results-carousel"
+    style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;">
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video id="cereal" controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="long_video/long_video_output_A_close-up_shot_of_an_artist's_hand_fingers_movin-_20250911_124946.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video id="cereal" controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="long_video/long_video_output_A_dramatic_tilt-up_shot_from_the_base_of_a_sleek-_20250911_133233.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video id="cereal" controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="long_video/long_video_output_A_dynamic_arc_shot_capturing_a_painter_in_front_of-_20250911_151618.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video id="cereal" controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="long_video/long_video_output_A_first-person_perspective_photo_in_a_realistic_ou-_20250911_145828.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+  </div>
+  
 
 
 
+  <br>
+  <hr>
+  <div class="container ">
+    <div class="content has-text-justified" style="font-size: 1.5rem; line-height: 1.8;">
+    </div>
+  </div>
+  <br>
+  <div id="results-carousel"
+    style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;">
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video id="cereal" controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="long_video/long_video_output_A_dramatic_nighttime_scene_in_the_style_of_a_class-_20250911_160918.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video id="cereal" controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="long_video/long_video_output_A_bustling_market_scene_captured_in_the_style_of_a-_20250911_135631.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video id="cereal" controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="long_video/long_video_output_A_handheld_perspective_of_a_hiker_ascending_a_rock-_20250911_121228.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video id="cereal" controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="long_video/long_video_output_A_dynamic_close-up_shot_of_a_young_adult_riding_a-_20250910_161951.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+  </div>
+
+  <br>
+  <hr>
+  <div class="container ">
+    <div class="content has-text-justified" style="font-size: 1.5rem; line-height: 1.8;">
+    </div>
+  </div>
+  <br>
+  <div id="results-carousel"
+    style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;">
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video id="cereal" controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="long_video/long_video_output_A_high-definition_racing_scene_in_the_style_of_a_p-_20250911_172812.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video id="cereal" controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="long_video/long_video_output_A_landscape_photograph_in_a_natural_and_serene_sty-_20250911_160339.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video id="cereal" controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="long_video/long_video_output_A_handheld_shot_following_a_young_child_running_th-_20250911_121608.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video id="cereal" controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="long_video/long_video_output_A_dynamic_tracking_shot_in_the_style_of_a_thrillin-_20250911_120458.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+  </div>
+
+  
+  
+  </section>
 
 
-
-<!-- Paper poster -->
-<section class="hero is-small is-light">
-  <div class="hero-body">
-    <div class="container">
-      <h2 class="title">Poster</h2>
-
-      <!-- TODO: Replace with your poster PDF -->
-      <iframe  src="static/pdfs/sample.pdf" width="100%" height="550">
-          </iframe>
-        
+  <div class="container ">
+    <h2 id="obj-comparison" class="title is-3 has-text-centered">BibTeX</h2>
+  </div>
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <div style="position: relative;">
+        <pre><code id="bibtex-code">@article{huang2025selfforcing,
+  title={Self Forcing: Bridging the Train-Test Gap in Autoregressive Video Diffusion},
+  author={Huang, Xun and Li, Zhengqi and He, Guande and Zhou, Mingyuan and Shechtman, Eli},
+  journal={arXiv preprint arXiv:2506.08009},
+  year={2025}
+}</code></pre>
+        <button id="copy-bibtex" onclick="copyBibtex()" style="position: absolute; top: 10px; right: 10px; background: #3273dc; color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-size: 12px;">
+          Copy
+        </button>
       </div>
     </div>
   </section>
-<!--End paper poster -->
 
+  <script>
+    function copyBibtex() {
+      const bibtexText = `@article{huang2025selfforcing,
+  title={Self Forcing: Bridging the Train-Test Gap in Autoregressive Video Diffusion},
+  author={Huang, Xun and Li, Zhengqi and He, Guande and Zhou, Mingyuan and Shechtman, Eli},
+  journal={arXiv preprint arXiv:2506.08009},
+  year={2025}
+}`;
 
-
-<!--BibTex citation -->
-  <section class="section" id="BibTeX">
-    <div class="container is-max-desktop content">
-      <div class="bibtex-header">
-        <h2 class="title">BibTeX</h2>
-        <button class="copy-bibtex-btn" onclick="copyBibTeX()" title="Copy BibTeX to clipboard">
-          <i class="fas fa-copy"></i>
-          <span class="copy-text">Copy</span>
-        </button>
-      </div>
-      <pre id="bibtex-code"><code>@article{YourPaperKey2024,
-  title={Your Paper Title Here},
-  author={First Author and Second Author and Third Author},
-  journal={Conference/Journal Name},
-  year={2024},
-  url={https://your-domain.com/your-project-page}
-}</code></pre>
-    </div>
-</section>
-<!--End BibTex citation -->
-
+      navigator.clipboard.writeText(bibtexText).then(function() {
+        const button = document.getElementById('copy-bibtex');
+        const originalText = button.textContent;
+        button.textContent = 'Copied!';
+        button.style.background = '#48c774';
+        setTimeout(function() {
+          button.textContent = originalText;
+          button.style.background = '#3273dc';
+        }, 2000);
+      }).catch(function(err) {
+        console.error('Failed to copy text: ', err);
+      });
+    }
+  </script>
 
   <footer class="footer">
-  <div class="container">
-    <div class="columns is-centered">
+    <div class="container" align="center">
       <div class="column is-8">
         <div class="content">
-
           <p>
-            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
-            You are free to borrow the source code of this website, we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
-            Commons Attribution-ShareAlike 4.0 International License</a>.
+            This website template is borrowed from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.
           </p>
-
         </div>
       </div>
     </div>
-  </div>
-</footer>
+  </footer>
 
-<!-- Statcounter tracking code -->
-  
-<!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
 
-    <!-- End of Statcounter Code -->
 
-  </body>
-  </html>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var videos = document.querySelectorAll('#results-carousel video');
+
+      videos.forEach(function (video) {
+        var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+        if (!isMobile) {
+          // console.log('Autoplay enabled for non-mobile devices');
+          if (!video.classList.contains('single_image_video')) {
+            video.setAttribute('autoplay', 'autoplay');
+            // video.play().catch(function(error) {
+            //     console.error('Video playback failed:', error);
+            // });
+          }
+
+          // else case is implicit - no action needed for 'single_image_video'
+        } else {
+          console.log('Autoplay disabled for mobile devices');
+        }
+      });
+    });
+  </script>
+
+</body>
+
+</html>
