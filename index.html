@@ -144,30 +144,12 @@
             <br>
             <h1 class="title is-1 publication-title" style="margin-bottom:0rem">DIAGONAL DISTILLATION</h1>
             <h2 class="title is-3 publication-title">FOR STREAMING AUTORE-GRESSIVE VIDEO GENERATION</h2>
-            <div class="is-size-5 publication-authors">
-              <span class="author-block">
-                <a href="https://www.xunhuang.me/">Xun Huang</a><sup>1</sup>,
-              </span>
-              <span class="author-block">
-                <a href="https://zhengqili.github.io/">Zhengqi Li</a><sup>1</sup>,
-              </span>
-              <span class="author-block">
-                <a href="https://guandehe.github.io/">Guande He</a><sup>2</sup>,
-              </span>
-              <!-- <br> -->
-              <span class="author-block">
-                <a href="https://mingyuanzhou.github.io/">Mingyuan Zhou</a><sup>2</sup>,
-              </span>
-              <span class="author-block">
-                <a href="https://research.adobe.com/person/eli-shechtman/">Eli Shechtman</a><sup>1</sup>,
-              </span>
+            <div style="text-align: center; margin-top: 20px;">
+                <h1 style="font-family: Arial, sans-serif; font-size: 20px; font-weight: 600; margin-bottom: 10px;">Anonymous authors</h3>
+                <p style="font-family: Arial, sans-serif; font-size: 20px; font-weight: 600;">Paper under double-blind review</p>
             </div>
 
-            <div class="is-size-5 publication-authors">
-              <span class="author-block"><sup>1</sup>Adobe Research,</span>
-              <span class="author-block"><sup>2</sup>UT Austin,</span>
-              <!-- <span class="author-block"><sup>*</sup>Equal Contribution</span> -->
-            </div>
+
 
             <!-- <div class="is-size-5 column has-text-centered"> -->
               <!-- <strong>CVPR 2025</strong> -->
@@ -215,11 +197,10 @@
         <div class="container is-max-desktop">
           <div class="columns is-centered">
             <div class="column has-text-centered">
-              <h2 class="title is-4" style="color: #3273dc; margin-bottom: 1rem;">TL;DR</h2>
+              <h2 class="title is-4" style="color: #3273dc; margin-bottom: 1rem;">Abstract</h2>
               <div class="content has-text-justified" style="font-size: 1.25rem; line-height: 1.6; background-color: #f8f9fa; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #3273dc;">
                 <p>
-                  <strong>Self Forcing</strong> trains autoregressive video diffusion models by <strong>simulating the inference process during training</strong>, performing autoregressive rollout with KV caching.
-                    It resolves the train-test distribution mismatch and enables <strong>real-time, streaming video generation on a single RTX 4090</strong>  while matching the quality of state-of-the-art diffusion models.
+                  The advent of large-scale diffusion models has greatly enhanced the quality of generated videos; however, their application in real-time streaming remains limited. While autoregressive models offer a natural framework for sequential frame gener- ation, they typically demand substantial computational resources to achieve high visual fidelity. Although diffusion distillation techniques can compress such models into efficient few-step variants, current video distillation methods largely adopt image-specific approaches that overlook critical temporal dependencies. Conse- quently, these techniques often excel in image generation but underperform in video synthesis, leading to issues such as reduced motion coherence, error accumulation over long sequences, and a persistent trade-off between latency and quality. We identify that these challenges are primarily exacerbated by two factors: insufficient use of temporal context during step reduction and the implicit prediction of the next noise level in next-chunk prediction (exposure bias). To address these issues, we propose a novel framework—diagonal distillation—that is orthogonal to existing approaches. This method systematically leverages temporal information across both video chunks and denoising steps. Specifically, we introduce an asymmetric generation strategy: “more steps early, fewer steps later.” This allows later chunks to efficiently inherit rich appearance information from the initial, more thoroughly processed chunks, while also utilizing partially denoised chunks as conditional inputs for subsequent generation. By realigning the implicit prediction of the next noise level during chunk generation with actual inference conditions, our approach mitigates error propagation and alleviates oversaturation in long-range sequences. Additionally, we integrate implicit optical flow modeling to preserve motion quality under strict step constraints. Our experiments demonstrate that the proposed framework establishes a new state-of-the-art(SOTA) in efficient video generation and reduces denoising computational cost by 68.5% during denoising, while achieving comparable or even superior video quality relative to the previous SOTA method.
                 </p>
               </div>
             </div>
@@ -232,7 +213,7 @@
     <!-- <h2 id="obj-comparison" class="title is-3 has-text-centered">Training paradigms for AR video diffusion models</h2> -->
     <div class="content has-text-justified" style="font-size: 1.5rem; line-height: 2.0;">
       <figure class="image is-centered">
-        <img src="static/teaser.jpg">
+        <img src="speed4_cropped_page-0001.jpg" width="200">
     </div>
   </div>
 
@@ -260,10 +241,7 @@
     <h2 id="obj-comparison" class="title is-3 has-text-centered">Real-Time Video Generation</h2>
     <div class="content has-text-justified" style="font-size: 1.5rem; line-height: 1.8;">
       <p>
-        Our model generates high-quality 480P videos with an initial latency of <strong>~0.8 seconds</strong>, after which
-        frames are generated in a streaming fashion at <strong>~16 FPS</strong> on a single H100 GPU and ~10 FPS on a single 4090 with some optimizations.
-        <br>
-        Below, we show 5-second videos (top) and extrapolated 10-second videos (bottom) generated by our model. <a href="videos.html">[More Examples]</a>
+        Our method is faster than the previous one while maintaining the same or even better video quality, without oversaturated artifacts and with more natural movement. Compared with Wan, Causvid and self-forcing, our method achieves the same or higher visual quality while increasing latency.
       </p>
     </div>
   </div>
@@ -439,31 +417,13 @@
   </div> -->
 
   <hr>
-  <div class="container " id="overview">
-    <h2 id="obj-comparison" class="title is-3 has-text-centered">(Surprisingly) Efficient Training, Even Without Full Parallelism</h2>
-    <div class="content has-text-justified" style="font-size: 1.5rem; line-height: 1.8;">
-      <p>
-        Although our reliance is on continuous rollout, its efficiency is astonishing and it achieves better quality under the same training budget. This is mainly because even if we process one frame at a time, we still maintain sufficient parallelism.
-      </p>
-    </div>
-
-    <div class="content has-text-justified" style="font-size: 1.5rem; line-height: 2.0;">
-      <figure class="image is-centered">
-        <img src="wechat_2025-09-09_214822_056.png">
-      </figure>
-    </div>
-  </div>
-  <br>
-
-  <hr>
 
 
   <div class="container ">
     <h2 id="obj-comparison" class="title is-3 has-text-centered">Faster, and Better </h2>
     <div class="content has-text-justified" style="font-size: 1.5rem; line-height: 1.8;">
       <p>
-        Our method has a faster speed than the previous one, while maintaining the same or even better video quality, without oversaturation artifacts and with more natural motion. Compared with Wan, SkyReels and MAGI, our method is 150-400× faster in latency while achieving equivalent or higher visual quality.
-      </p>
+        Our method is faster than the previous one while maintaining the same or even better video quality, without oversaturated artifacts and with more natural movement. Compared with Wan, Causvid and self-forcing, our method achieves the same or higher visual quality while increasing latency.
     </div>
   </div>
 
@@ -473,7 +433,7 @@
       <p><strong style="font-size: 24px;">Wan2.1-1.3B</strong></p>
     </div>
     <div class="column">
-      <p><strong style="font-size: 24px;">CausVid-1.3B</strong></p>
+      <p><strong style="font-size: 24px;">CausVid</strong></p>
     </div>
     <div class="column">
       <p><strong style="font-size: 24px;">Self forcing</strong></p>
@@ -488,7 +448,7 @@
     <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
       <video controls preload="metadata" autoplay muted loop playsinline>
         <source
-          src="case/Wan_woman.mp4"
+          src="case/女人走路.mp4"
           type="video/mp4">
       </video>
     </div>
@@ -516,6 +476,38 @@
   </div>
   <p class="prompt-text">A stylish woman walks down a Tokyo street filled with warm glowing neon and animated city signage. She wears a black leather jacket, a long red dress, and black boots, and carries a black purse. She wears sunglasses and red lipstick. She walks confidently and casually. The street is damp and reflective, creating a mirror effect of the colorful lights. Many pedestrians walk about.</p>
   <!-- Row 2 -->
+  <div id="results-carousel"
+  style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;">
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="case/跑步.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="case/long_video_output_A_cinematic_film_shot_in_35mm_capturing_a_dynamic-_20250913_090135.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="case/long_video_output_A_cinematic_film_shot_in_35mm_capturing_a_dynamic-_20250912_160104.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="case/long_video_output_A_cinematic_film_shot_in_35mm_capturing_a_dynamic-_20250912_140732.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+  </div>
+  <p class="prompt-text">A cinematic film shot in 35mm capturing a dynamic step-printing scene of a person running. The runner is a young man with short, tousled brown hair and determined eyes, sprinting down a city street lined with tall buildings and neon signs. His arms are pumped vigorously, and he looks focused and energetic. The background features blurred motion with the cityscape gradually fading into a soft, sepia tone. The camera follows him closely, capturing his every stride and movement. The scene has a nostalgic and vintage film texture, enhancing the dramatic intensity of the run. A close-up shot from a slightly behind-the-subject angle.</p>
 
   <div id="results-carousel"
   style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;">
@@ -549,6 +541,102 @@
     </div>
   </div>
   <p class="prompt-text">A petri dish with a bamboo forest growing within it that has tiny red pandas running around.</p>
+  <div id="results-carousel"
+  style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;">
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="case/骑马.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="case/long_video_output_A_cinematic_scene_from_a_classic_western_movie_fe-_20250913_091025.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="case/long_video_output_A_cinematic_scene_from_a_classic_western_movie_fe-_20250912_160118.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="case/long_video_output_A_cinematic_scene_from_a_classic_western_movie_fe-_20250912_141308.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+  </div>
+  <p class="prompt-text">A cinematic scene from a classic western movie, featuring a rugged man riding a powerful horse through the vast Gobi Desert at sunset. The man, dressed in a dusty cowboy hat and a worn leather jacket, reins tightly on the horse's neck as he gallops across the golden sands. The sun sets dramatically behind them, casting long shadows and warm hues across the landscape. The background is filled with rolling dunes and sparse, rocky outcrops, emphasizing the harsh beauty of the desert. A dynamic wide shot from a low angle, capturing both the man and the expansive desert vista.</p>
+  <div id="results-carousel"
+  style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;">
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="case/水.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="case/long_video_output_A_dramatic_and_dynamic_scene_in_the_style_of_a_dis-_20250913_091036.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="case/long_video_output_A_dramatic_and_dynamic_scene_in_the_style_of_a_dis-_20250912_160132.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="case/long_video_output_A_dramatic_and_dynamic_scene_in_the_style_of_a_dis-_20250912_141730.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+  </div>
+  <p class="prompt-text">A dramatic and dynamic scene in the style of a disaster movie, depicting a powerful tsunami rushing through a narrow alley in Bulgaria. The water is turbulent and chaotic, with waves crashing violently against the walls and buildings on either side. The alley is lined with old, weathered houses, their facades partially submerged and splintered. The camera angle is low, capturing the full force of the tsunami as it surges forward, creating a sense of urgency and danger. People can be seen running frantically, adding to the chaos. The background features a distant horizon, hinting at the larger scale of the tsunami. A dynamic, sweeping shot from a low-angle perspective, emphasizing the movement and intensity of the event.</p>
+  <div id="results-carousel"
+  style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;">
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="case/女孩跑步.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="case/long_video_output_A_dynamic_and_chaotic_scene_in_a_dense_forest_duri-_20250913_091047.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="case/long_video_output_A_dynamic_and_chaotic_scene_in_a_dense_forest_duri-_20250912_160146.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="case/long_video_output_A_dynamic_and_chaotic_scene_in_a_dense_forest_duri-_20250912_143245.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+  </div>
+  <p class="prompt-text">A dynamic and chaotic scene in a dense forest during a heavy rainstorm, capturing a real girl frantically running through the foliage. Her wild hair flows behind her as she sprints, her arms flailing and her face contorted in fear and desperation. Behind her, various animals—rabbits, deer, and birds—are also running, creating a frenzied atmosphere. The girl's clothes are soaked, clinging to her body, and she is screaming and shouting as she tries to escape. The background is a blur of greenery and rain-drenched trees, with occasional glimpses of the darkening sky. A wide-angle shot from a low angle, emphasizing the urgency and chaos of the moment.</p>
   <div id="results-carousel"
     style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;">
     <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
@@ -618,14 +706,14 @@
     <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
       <video id="cereal" controls preload="metadata" autoplay muted loop playsinline>
         <source
-          src="case/long_video_output_A_close-up_3D_animated_scene_of_a_short_fluffy_mo-_20250909_025510.mp4"
+          src="case/long_video_output_A_close-up_3D_animated_scene_of_a_short_fluffy_mo-_20250909_153336.mp4"
           type="video/mp4">
       </video>
     </div>
     <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
       <video id="cereal" controls preload="metadata" autoplay muted loop playsinline>
         <source
-          src="bad_case/long_video_output_Animated_scene_features_a_close-up_of_a_short_fluf-_20250912_085719.mp4"
+          src="case/long_video_output_Animated_scene_features_a_close-up_of_a_short_fluf-_20250913_034016.mp4"
           type="video/mp4">
       </video>
     </div>
@@ -662,7 +750,7 @@
     <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
       <video id="cereal" controls preload="metadata" autoplay muted loop playsinline>
         <source
-          src="bad_case/long_video_output_A_close_up_view_of_a_glass_sphere_that_has_a_zen_g-_20250912_090053.mp4"
+          src="case/long_video_output_A_close_up_view_of_a_glass_sphere_that_has_a_zen_g-_20250913_034026.mp4"
           type="video/mp4">
       </video>
     </div>
@@ -699,7 +787,7 @@
     <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
       <video id="cereal" controls preload="metadata" autoplay muted loop playsinline>
         <source
-          src="bad_case/long_video_output_A_3D_animation_of_a_small_round_fluffy_creature-_20250912_085739.mp4"
+          src="case/long_video_output_A_3D_animation_of_a_small_round_fluffy_creature-_20250913_034036.mp4"
           type="video/mp4">
       </video>
     </div>
@@ -736,7 +824,7 @@
     <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
       <video id="cereal" controls preload="metadata" autoplay muted loop playsinline>
         <source
-          src="bad_case/long_video_output_A_romantic_scene_in_a_nighttime_cityscape_where_a-_20250912_085750.mp4"
+          src="case/long_video_output_A_romantic_scene_in_a_nighttime_cityscape_where_a-_20250913_034047.mp4"
           type="video/mp4">
       </video>
     </div>
@@ -774,7 +862,7 @@
     <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
       <video id="cereal" controls preload="metadata" autoplay muted loop playsinline>
         <source
-          src="bad_case/long_video_output_A_cyberpunk-style_illustration_depicting_a_lone_ro-_20250912_093757.mp4"
+          src="case/long_video_output_A_cyberpunk-style_illustration_depicting_a_lone_ro-_20250913_034058.mp4"
           type="video/mp4">
       </video>
     </div>
@@ -847,236 +935,205 @@
   <br>
   <hr>
   <div class="container ">
-    <h2 id="obj-comparison" class="title is-3 has-text-centered">Long video genration(Self forcing)</h2>
+    <h2 id="obj-comparison" class="title is-3 has-text-centered">Long video genration </h2>
     <div class="content has-text-justified" style="font-size: 1.5rem; line-height: 1.8;">
       <p>
-        The following is the result of our long video generation
-      </p>
+        The following is the performance of different models in long video generation
     </div>
   </div>
-  <br>
-  <div id="results-carousel"
-    style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;">
-    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
-      <video id="cereal" controls preload="metadata" autoplay muted loop playsinline>
-        <source
-          src="bad_case/long_video_output_A_bustling_market_scene_captured_in_the_style_of_a-_20250912_010304.mp4"
-          type="video/mp4">
-      </video>
-    </div>
-    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
-      <video id="cereal" controls preload="metadata" autoplay muted loop playsinline>
-        <source
-          src="bad_case/long_video_output_A_close-up_shot_of_an_artist's_hand_fingers_movin-_20250912_000141.mp4"
-          type="video/mp4">
-      </video>
-    </div>
-    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
-      <video id="cereal" controls preload="metadata" autoplay muted loop playsinline>
-        <source
-          src="bad_case/long_video_output_A_dramatic_nighttime_scene_in_the_style_of_a_class-_20250912_033513.mp4"
-          type="video/mp4">
-      </video>
-    </div>
-    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
-      <video id="cereal" controls preload="metadata" autoplay muted loop playsinline>
-        <source
-          src="bad_case/long_video_output_A_first-person_perspective_photo_in_a_realistic_ou-_20250912_021128.mp4"
-          type="video/mp4">
-      </video>
-    </div>
-  </div> 
-  
-  <br>
-  <hr>
-  <div class="container ">
-    <h2 id="obj-comparison" class="title is-3 has-text-centered">Long video genration(Causvid)</h2>
-    <div class="content has-text-justified" style="font-size: 1.5rem; line-height: 1.8;">
-      <p>
-        The following is the result of our long video generation
-      </p>
-    </div>
-  </div>
-  <br>
-  <div id="results-carousel"
-    style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;">
-    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
-      <video id="cereal" controls preload="metadata" autoplay muted loop playsinline>
-        <source
-          src="bad_case/long_video_output_A_bustling_market_scene_captured_in_the_style_of_a-_20250912_010304.mp4"
-          type="video/mp4">
-      </video>
-    </div>
-    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
-      <video id="cereal" controls preload="metadata" autoplay muted loop playsinline>
-        <source
-          src="bad_case/long_video_output_A_close-up_shot_of_an_artist's_hand_fingers_movin-_20250912_000141.mp4"
-          type="video/mp4">
-      </video>
-    </div>
-    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
-      <video id="cereal" controls preload="metadata" autoplay muted loop playsinline>
-        <source
-          src="bad_case/long_video_output_A_dramatic_nighttime_scene_in_the_style_of_a_class-_20250912_033513.mp4"
-          type="video/mp4">
-      </video>
-    </div>
-    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
-      <video id="cereal" controls preload="metadata" autoplay muted loop playsinline>
-        <source
-          src="bad_case/long_video_output_A_first-person_perspective_photo_in_a_realistic_ou-_20250912_021128.mp4"
-          type="video/mp4">
-      </video>
-    </div>
-  </div> 
 
   <br>
-  <hr>
-  <div class="container ">
-    <h2 id="obj-comparison" class="title is-3 has-text-centered">Long video genration(Ours)</h2>
-    <div class="content has-text-justified" style="font-size: 1.5rem; line-height: 1.8;">
-      <p>
-        The following is the result of our long video generation
-      </p>
+  <div class="columns is-centered has-text-centered">
+    <div class="column">
+      <p><strong style="font-size: 24px;">Self forcing</strong></p>
+    </div>
+    <div class="column">
+      <p><strong style="font-size: 24px;">CausVid</strong></p>
+    </div>
+    <div class="column">
+      <p><strong style="font-size: 24px;">Ours</strong></p>
     </div>
   </div>
-  <br>
+
   <div id="results-carousel"
     style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;">
     <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
-      <video id="cereal" controls preload="metadata" autoplay muted loop playsinline>
+      <video controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="bad_case/long_video_output_A_close-up_shot_of_an_artist's_hand_fingers_movin-_20250912_000141.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="case/long_video_output_A_close-up_shot_of_an_artist's_hand_fingers_movin-_20250915_102837.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video controls preload="metadata" autoplay muted loop playsinline>
         <source
           src="long_video/long_video_output_A_close-up_shot_of_an_artist's_hand_fingers_movin-_20250911_124946.mp4"
           type="video/mp4">
       </video>
     </div>
+  </div>
+  <p class="prompt-text">A stylish woman walks down a Tokyo street filled with warm glowing neon and animated city signage. She wears a black leather jacket, a long red dress, and black boots, and carries a black purse. She wears sunglasses and red lipstick. She walks confidently and casually. The street is damp and reflective, creating a mirror effect of the colorful lights. Many pedestrians walk about.</p>
+  <!-- Row 2 -->
+  <div id="results-carousel"
+  style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;">
     <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
-      <video id="cereal" controls preload="metadata" autoplay muted loop playsinline>
+      <video controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="long_video/long_video_output_A_dramatic_tilt-up_shot_from_the_base_of_a_sleek-_20250915_091300.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="long_video/long_video_output_A_dramatic_tilt-up_shot_from_the_base_of_a_sleek-_20250915_085631.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video controls preload="metadata" autoplay muted loop playsinline>
         <source
           src="long_video/long_video_output_A_dramatic_tilt-up_shot_from_the_base_of_a_sleek-_20250911_133233.mp4"
           type="video/mp4">
       </video>
     </div>
+  </div>
+  <p class="prompt-text">A cinematic film shot in 35mm capturing a dynamic step-printing scene of a person running. The runner is a young man with short, tousled brown hair and determined eyes, sprinting down a city street lined with tall buildings and neon signs. His arms are pumped vigorously, and he looks focused and energetic. The background features blurred motion with the cityscape gradually fading into a soft, sepia tone. The camera follows him closely, capturing his every stride and movement. The scene has a nostalgic and vintage film texture, enhancing the dramatic intensity of the run. A close-up shot from a slightly behind-the-subject angle.</p>
+
+  <div id="results-carousel"
+  style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;">
     <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
-      <video id="cereal" controls preload="metadata" autoplay muted loop playsinline>
+      <video controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="long_video/long_video_output_A_dynamic_arc_shot_capturing_a_painter_in_front_of-_20250915_085836.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="long_video/long_video_output_A_dynamic_arc_shot_capturing_a_painter_in_front_of-_20250915_091522.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video controls preload="metadata" autoplay muted loop playsinline>
         <source
           src="long_video/long_video_output_A_dynamic_arc_shot_capturing_a_painter_in_front_of-_20250911_151618.mp4"
           type="video/mp4">
       </video>
     </div>
+  </div>
+  <p class="prompt-text">A petri dish with a bamboo forest growing within it that has tiny red pandas running around.</p>
+  <div id="results-carousel"
+  style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;">
     <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
-      <video id="cereal" controls preload="metadata" autoplay muted loop playsinline>
+      <video controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="long_video/long_video_output_A_first-person_perspective_photo_in_a_realistic_ou-_20250915_090041.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="long_video/long_video_output_A_first-person_perspective_photo_in_a_realistic_ou-_20250915_091746.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video controls preload="metadata" autoplay muted loop playsinline>
         <source
           src="long_video/long_video_output_A_first-person_perspective_photo_in_a_realistic_ou-_20250911_145828.mp4"
           type="video/mp4">
       </video>
     </div>
   </div>
-  
-
-
-
-  <br>
-  <hr>
-  <div class="container ">
-    <div class="content has-text-justified" style="font-size: 1.5rem; line-height: 1.8;">
-    </div>
-  </div>
-  <br>
+  <p class="prompt-text">A cinematic scene from a classic western movie, featuring a rugged man riding a powerful horse through the vast Gobi Desert at sunset. The man, dressed in a dusty cowboy hat and a worn leather jacket, reins tightly on the horse's neck as he gallops across the golden sands. The sun sets dramatically behind them, casting long shadows and warm hues across the landscape. The background is filled with rolling dunes and sparse, rocky outcrops, emphasizing the harsh beauty of the desert. A dynamic wide shot from a low angle, capturing both the man and the expansive desert vista.</p>
   <div id="results-carousel"
-    style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;">
+  style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;">
     <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
-      <video id="cereal" controls preload="metadata" autoplay muted loop playsinline>
+      <video controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="bad_case/long_video_output_A_dramatic_nighttime_scene_in_the_style_of_a_class-_20250912_033513.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="long_video/long_video_output_A_dramatic_nighttime_scene_in_the_style_of_a_class-_20250915_092048.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video controls preload="metadata" autoplay muted loop playsinline>
         <source
           src="long_video/long_video_output_A_dramatic_nighttime_scene_in_the_style_of_a_class-_20250911_160918.mp4"
           type="video/mp4">
       </video>
     </div>
+  </div>
+  <p class="prompt-text">A dramatic and dynamic scene in the style of a disaster movie, depicting a powerful tsunami rushing through a narrow alley in Bulgaria. The water is turbulent and chaotic, with waves crashing violently against the walls and buildings on either side. The alley is lined with old, weathered houses, their facades partially submerged and splintered. The camera angle is low, capturing the full force of the tsunami as it surges forward, creating a sense of urgency and danger. People can be seen running frantically, adding to the chaos. The background features a distant horizon, hinting at the larger scale of the tsunami. A dynamic, sweeping shot from a low-angle perspective, emphasizing the movement and intensity of the event.</p>
+  <div id="results-carousel"
+  style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;">
     <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
-      <video id="cereal" controls preload="metadata" autoplay muted loop playsinline>
+      <video controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="bad_case/long_video_output_A_bustling_market_scene_captured_in_the_style_of_a-_20250912_010304.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="long_video/long_video_output_A_bustling_market_scene_captured_in_the_style_of_a-_20250915_092344.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video controls preload="metadata" autoplay muted loop playsinline>
         <source
           src="long_video/long_video_output_A_bustling_market_scene_captured_in_the_style_of_a-_20250911_135631.mp4"
           type="video/mp4">
       </video>
     </div>
+  </div>
+  <p class="prompt-text">A dynamic and chaotic scene in a dense forest during a heavy rainstorm, capturing a real girl frantically running through the foliage. Her wild hair flows behind her as she sprints, her arms flailing and her face contorted in fear and desperation. Behind her, various animals—rabbits, deer, and birds—are also running, creating a frenzied atmosphere. The girl's clothes are soaked, clinging to her body, and she is screaming and shouting as she tries to escape. The background is a blur of greenery and rain-drenched trees, with occasional glimpses of the darkening sky. A wide-angle shot from a low angle, emphasizing the urgency and chaos of the moment.</p>
+  <div id="results-carousel"
+    style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;">
     <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
-      <video id="cereal" controls preload="metadata" autoplay muted loop playsinline>
+      <video controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="long_video/long_video_output_A_handheld_perspective_of_a_hiker_ascending_a_rock-_20250915_090701.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video controls preload="metadata" autoplay muted loop playsinline>
+        <source
+          src="long_video/long_video_output_A_handheld_perspective_of_a_hiker_ascending_a_rock-_20250915_090701.mp4"
+          type="video/mp4">
+      </video>
+    </div>
+    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
+      <video controls preload="metadata" autoplay muted loop playsinline>
         <source
           src="long_video/long_video_output_A_handheld_perspective_of_a_hiker_ascending_a_rock-_20250911_121228.mp4"
           type="video/mp4">
       </video>
     </div>
-    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
-      <video id="cereal" controls preload="metadata" autoplay muted loop playsinline>
-        <source
-          src="long_video/long_video_output_A_dynamic_close-up_shot_of_a_young_adult_riding_a-_20250910_161951.mp4"
-          type="video/mp4">
-      </video>
-    </div>
   </div>
-
-  <br>
-  <hr>
-  <div class="container ">
-    <div class="content has-text-justified" style="font-size: 1.5rem; line-height: 1.8;">
-    </div>
-  </div>
-  <br>
-  <div id="results-carousel"
-    style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;">
-    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
-      <video id="cereal" controls preload="metadata" autoplay muted loop playsinline>
-        <source
-          src="long_video/long_video_output_A_high-definition_racing_scene_in_the_style_of_a_p-_20250911_172812.mp4"
-          type="video/mp4">
-      </video>
-    </div>
-    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
-      <video id="cereal" controls preload="metadata" autoplay muted loop playsinline>
-        <source
-          src="long_video/long_video_output_A_landscape_photograph_in_a_natural_and_serene_sty-_20250911_160339.mp4"
-          type="video/mp4">
-      </video>
-    </div>
-    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
-      <video id="cereal" controls preload="metadata" autoplay muted loop playsinline>
-        <source
-          src="long_video/long_video_output_A_handheld_shot_following_a_young_child_running_th-_20250911_121608.mp4"
-          type="video/mp4">
-      </video>
-    </div>
-    <div class="item" style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
-      <video id="cereal" controls preload="metadata" autoplay muted loop playsinline>
-        <source
-          src="long_video/long_video_output_A_dynamic_tracking_shot_in_the_style_of_a_thrillin-_20250911_120458.mp4"
-          type="video/mp4">
-      </video>
-    </div>
-  </div>
-
-  
-  
-  </section>
+  <p class="prompt-text">An adorable happy otter confidently stands on a surfboard wearing a yellow lifejacket, riding along turquoise tropical waters near lush tropical islands, 3D digital render art style.</p>
 
 
-  <div class="container ">
-    <h2 id="obj-comparison" class="title is-3 has-text-centered">BibTeX</h2>
-  </div>
-  <section class="section" id="BibTeX">
-    <div class="container is-max-desktop content">
-      <div style="position: relative;">
-        <pre><code id="bibtex-code">@article{huang2025selfforcing,
-  title={Self Forcing: Bridging the Train-Test Gap in Autoregressive Video Diffusion},
-  author={Huang, Xun and Li, Zhengqi and He, Guande and Zhou, Mingyuan and Shechtman, Eli},
-  journal={arXiv preprint arXiv:2506.08009},
-  year={2025}
-}</code></pre>
-        <button id="copy-bibtex" onclick="copyBibtex()" style="position: absolute; top: 10px; right: 10px; background: #3273dc; color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-size: 12px;">
-          Copy
-        </button>
-      </div>
-    </div>
-  </section>
 
   <script>
     function copyBibtex() {
